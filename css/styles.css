@@ -1,0 +1,402 @@
+:root {
+    --highlight-color: #e11d48; /* Color llamativo para términos añadidos */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: url('../img/fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Aplicar Cambria Math a contenedores KaTeX sin romper símbolos compuestos como \neq */
+.katex, .katex-display {
+    font-family: 'Cambria Math', Cambria, Georgia, serif !important;
+}
+
+/* Logo Institucional Flotante (Esquina Inferior Izquierda) */
+.institutional-logo {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.institutional-logo img {
+    height: 42px;
+    width: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Contenedor Proporción 16:9 Estricta sin scroll */
+.presentation-wrapper {
+    width: 94vw;
+    max-width: 1300px;
+    aspect-ratio: 16 / 9;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    border-radius: 22px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.slide-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    overflow: hidden;
+    animation: fadeInSlide 0.35s ease-in-out;
+}
+
+.slide.active {
+    display: flex;
+}
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Temas de Fondo Degradados por Diapositiva */
+.slide[data-theme="welcome"] { background: linear-gradient(135deg, #eef2ff 0%, #fae8ff 100%); }
+.slide[data-theme="foundations"] { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
+.slide[data-theme="linear"] { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); }
+.slide[data-theme="quadratic"] { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); }
+.slide[data-theme="cubic"] { background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); }
+.slide[data-theme="closing"] { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
+
+.slide-header {
+    margin-bottom: 0.6rem;
+}
+
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 0.2rem;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.slide-header h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    color: #1e293b;
+    font-weight: 700;
+    margin-top: 0.2rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.badge-indigo { background: #e0e7ff; color: #4f46e5; }
+.badge-sky { background: #e0f2fe; color: #0284c7; }
+.badge-emerald { background: #d1fae5; color: #059669; }
+.badge-rose { background: #ffe4e6; color: #e11d48; }
+.badge-amber { background: #fef3c7; color: #d97706; }
+
+.slide-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: visible;
+}
+
+.center-content { align-items: center; text-align: center; }
+.center-text { text-align: center; }
+
+/* Tarjetas y Contenedores */
+.card, .info-card, .rule-box, .problem-container-compact {
+    background: white;
+    padding: 1.2rem 1.8rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    overflow: visible;
+}
+
+.card-welcome-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.card-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+.card-grid-3, .rules-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+/* Diapositiva 3: Tarjetas más altas y separación del texto */
+.intro-spaced {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #334155;
+    text-align: center;
+}
+
+.rules-grid-3-tall {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+}
+
+.rule-box-tall {
+    background: white;
+    padding: 1.2rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.rule-box-tall i {
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+}
+
+.rule-box-tall h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    color: #1e293b;
+}
+
+.rule-box-tall p {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+.rule-example {
+    background: #f8fafc;
+    padding: 0.6rem;
+    border-radius: 8px;
+    border-left: 3px solid #0284c7;
+}
+
+.rule-example small {
+    font-size: 0.7rem;
+    color: #475569;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.math-eq-xs {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0f172a;
+    text-align: center;
+    margin: 0.15rem 0;
+}
+
+/* Cuadrícula 2x2 para Ecuaciones Cuadráticas */
+.card-grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+}
+
+.info-card-sm {
+    background: white;
+    padding: 1rem 1.4rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.04);
+}
+
+.info-card-sm h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: #1e293b;
+}
+
+.info-card-sm p {
+    font-size: 0.78rem;
+    color: #475569;
+}
+
+.math-display {
+    font-size: 1.1rem;
+    color: #4f46e5;
+    margin: 0.4rem 0;
+    text-align: center;
+    overflow: visible;
+}
+
+.math-display-sm {
+    font-size: 0.95rem;
+    color: #059669;
+    margin: 0.2rem 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.math-eq {
+    background: #f8fafc;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    text-align: center;
+    margin: 0.25rem 0;
+    font-weight: 600;
+    overflow: visible;
+}
+
+.math-eq-sm {
+    font-weight: 600;
+    color: #334155;
+    margin: 0.1rem 0;
+}
+
+/* Pasos Interactivos Exclusivos (Uno a la vez) */
+.steps-flow-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.btn-step {
+    padding: 0.45rem 1rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    transition: filter 0.1s;
+}
+
+.btn-step:hover { filter: brightness(0.95); }
+
+.btn-emerald { background: #10b981; color: white; }
+.btn-rose { background: #f43f5e; color: white; }
+.btn-indigo { background: #6366f1; color: white; }
+
+.step-box {
+    background: #f8fafc;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #0f172a;
+    font-size: 0.8rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    overflow: visible;
+}
+
+.hidden { display: none; }
+
+/* --- Códigos QR aumentados 160% (240px) --- */
+.qr-preview-sm img {
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-top: 0.6rem;
+}
+
+.qr-grid-final {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.qr-card {
+    background: white;
+    padding: 1.2rem;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.qr-card img {
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 0.6rem;
+}
+
+.qr-card span {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 0.85rem;
+    display: block;
+}
+
+/* Footer de Diapositiva */
+.slide-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding-top: 0.6rem;
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.btn-nav {
+    padding: 0.45rem 1.2rem;
+    border-radius: 7px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s;
+}
+
+.btn-nav:active { transform: scale(0.97); }
+.btn-secondary { background: #e2e8f0; color: #334155; }
+.btn-sky { background: #0ea5e9; color: white; }
+.btn-amber { background: #f59e0b; color: white; }
