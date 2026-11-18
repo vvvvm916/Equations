@@ -24,6 +24,8 @@ function changeSlide(direction) {
     }
     
     slides[currentSlideIndex].classList.add('active');
+    
+    // En móviles y escritorio, al cambiar de diapositiva se asegura la visibilidad superior
     window.scrollTo({ top: 0, behavior: 'smooth' });
     renderMath();
 }
