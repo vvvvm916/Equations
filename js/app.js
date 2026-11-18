@@ -24,6 +24,7 @@ function changeSlide(direction) {
     }
     
     slides[currentSlideIndex].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     renderMath();
 }
 
